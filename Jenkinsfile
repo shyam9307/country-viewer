@@ -19,13 +19,13 @@ pipeline {
             steps {
                 sh 'node -v'
                 sh 'npm -v'
-                sh 'npm install -g @angular/cli@15.1.2 --unsafe-perm' // Fix permission issue
+                sh 'npm install @angular/cli@15.1.2 --save-dev' // Install locally instead of globally
                 sh 'npm install'
             }
         }
         stage('Build Angular App') {
             steps {
-                sh 'npx ng build --configuration production --output-path=${BUILD_DIR}'
+                sh 'npx ng build --configuration production --output-path=${BUILD_DIR}' // Use npx
                 sh 'ls -l ${BUILD_DIR}/'
             }
         }
